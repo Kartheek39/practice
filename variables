@@ -6,4 +6,6 @@ echo second argument =$2
 echo all arguments =$*
 ehho all arguments =$@
 echo number of arguments =$#
+echo added one new line
+
 
