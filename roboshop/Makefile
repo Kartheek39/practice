@@ -2,22 +2,22 @@
 help:  ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep 
 mongodb: ## install mongoDB.
-	@bash mongodb
+	@bash components/mongodb
 catalogue: ## install catalogue.
-	@bash Components/catalogue
+	@bash catalogue
 cart: ## install cart.
 	@bash cart
 user: ## install user.
-	@bash Components/user
+	@bash user
 shipping: ## install shipping.
-	@bash Components/shipping
+	@bash shipping
 mysql: ## install mysql.
-	@bash Components/mysql
+	@bash mysql
 redis: ## install redis.
-	@bash Componets/redis
+	@bash redis
 rabbitmq: ## install rabbitmq.
-	@bash Components/frontend
+	@bash rabbitmq
 payment: ## install payment.
-	@bash Components/payment
+	@bash payment
 frontend: ## install frontend.
-	@bash Components/frontend
+	@bash frontend
