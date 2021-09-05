@@ -6,7 +6,7 @@ mongodb: ## install mongoDB.
 catalogue: ## install catalogue.
 	@bash Components/catalogue
 cart: ## install cart.
-	@bash Components/cart
+	@bash cart
 user: ## install user.
 	@bash Components/user
 shipping: ## install shipping.
