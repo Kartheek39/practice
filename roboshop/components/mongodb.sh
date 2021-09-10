@@ -8,7 +8,7 @@ else
 fi
 }
 print(){
-  echo -n "$1"
+  echo -n "$1-"
 }
 print "setting mongodb repository"
 echo '[mongodb-org-4.2]
