@@ -14,3 +14,6 @@ if [ $UID -ne 0 ]; then
     echo -e "\e[1;33muser should be as root user\e[0m"
     exit 1
 fi
+
+LOG=tmp/roboshop.log
+rm -f $LOG

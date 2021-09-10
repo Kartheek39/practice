@@ -1,7 +1,7 @@
 #!/bin/bash
 source components/common.sh
 print "installing nodejs"
-yum install nodejs make gcc-c++ -y
+yum install nodejs make gcc-c++ -y &>>$LOG
 status_check $?
 print "adding user"
 useradd roboshop
@@ -13,7 +13,7 @@ print "redirecting to roboshop directory"
 cd /home/roboshop
 status_check
 print "extracting catalogue archieved file"
-unzip -o /tmp/catalogue.zip
+unzip -o /tmp/catalogue.zip &>>$LOG
 mv catalogue-main catalogue
 status_check $?
 print "installing npm"
