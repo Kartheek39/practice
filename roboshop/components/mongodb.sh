@@ -10,13 +10,15 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 echo "installing mongodb"
-yum install -y mongodb-org
+yum install -y mongodb-org &>>/tmp/log
 if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 echo "starting mongodb"
 systemctl enable mongod
@@ -25,6 +27,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 
 echo "configuring mongodb"
@@ -34,6 +37,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 echo "downloading schema "
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
@@ -42,6 +46,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 echo "extracting archive schema file"
 unzip -o mongodb.zip &>>/tmp/log
@@ -50,6 +55,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
 echo "loading schema to mongodb"
 mongo < catalogue.js &>>/tmp/log
@@ -58,4 +64,5 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
   echo -e "\e[31mFAILURE\e[0m"]
+  exit 2
 fi
