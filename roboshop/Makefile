@@ -11,3 +11,5 @@ user: ## install user.
 	@bash user
 shipping: ## install shipping.
 	@bash shipping
+common: 
+	@bash components/common.sh
