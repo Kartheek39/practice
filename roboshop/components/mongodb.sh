@@ -18,18 +18,18 @@ gpgcheck=1
 enabled=1
 gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mongodb.repo
 status_check $?
-print "installing mongodb"
+print "installing mongodb\t"
 yum install -y mongodb-org &>>/tmp/log
 status_check $?
-print "starting mongodb"
+print "starting mongodb\t"
 systemctl enable mongod
 systemctl start mongod
 status_check $?
-print "configuring mongodb"
+print "configuring mongodb\t"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 systemctl restart mongod
 status_check $?
-print "downloading schema "
+print "downloading schema\t"
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
 cd /tmp
 status_check $?
