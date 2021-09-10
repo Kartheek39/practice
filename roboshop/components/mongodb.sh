@@ -25,7 +25,7 @@ systemctl start mongod
 status_check $?
 echo "configuring mongodb"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
-sysemctl restart mongod
+systemctl restart mongod
 status_check $?
 echo "downloading schema "
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
