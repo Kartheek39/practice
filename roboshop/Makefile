@@ -1,7 +1,7 @@
 #!/bin/bash
 help:  ## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep 
-mongodb.sh: ## install mongoDB.
+mongodb: ## install mongoDB.
 	@bash components/mongodb.sh
 catalogue: ## install catalogue.
 	@bash catalogue

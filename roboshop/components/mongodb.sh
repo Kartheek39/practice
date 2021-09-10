@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "setting mongodb repository"
 echo '[mongodb-org-4.2]
 name=MongoDB Repository
@@ -8,25 +9,53 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mong
 if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
 else
-  echo -e "\e[31mSUCCESS\e[0m"]
+  echo -e "\e[31mFAILURE\e[0m"]
 fi
 echo "installing mongodb"
-yum install -y mongodb-org >>/tmp/log
+yum install -y mongodb-org
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
 echo "starting mongodb"
 systemctl enable mongod
 systemctl start mongod
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
+
 echo "configuring mongodb"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
-
 systemctl restart mongod
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
 echo "downloading schema "
-
 curl -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
-
 cd /tmp
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
 echo "extracting archive schema file"
-unzip -o mongodb.zip >>/tmp/log
+unzip -o mongodb.zip &>>/tmp/log
 cd mongodb-main
-ehco "loading schema to mongodb"
-mongo < catalogue.js >>/tmp/log
-mongo < users.js >>/tmp/log
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
+echo "loading schema to mongodb"
+mongo < catalogue.js &>>/tmp/log
+mongo < users.js &>>/tmp/log
+if [ $? -eq 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"]
+else
+  echo -e "\e[31mFAILURE\e[0m"]
+fi
