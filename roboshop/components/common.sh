@@ -10,5 +10,7 @@ fi
 print(){
   echo -n -e "$1 \t- "
 }
-if [$UID -ne 0];then
+if [ $UID -ne 0 ]; then
     echo -e "\e[1;33muser should be as root user"
+    exit 1
+fi
