@@ -4,7 +4,7 @@ help:  ## Show this help.
 mongodb: ## install mongoDB.
 	@bash components/mongodb.sh
 catalogue: ## install catalogue.
-	@bash components/catalogue
+	@bash components/catalogue.sh
 cart: ## install cart.
 	@bash cart
 user: ## install user.
