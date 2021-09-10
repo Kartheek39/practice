@@ -21,7 +21,7 @@ else
   exit 2
 fi
 echo "starting mongodb"
-systemctl enable mongod
+systemctl enablee mongod
 systemctl start mongod
 if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"]
