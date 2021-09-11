@@ -18,6 +18,7 @@ print "redirecting to roboshop directory"
 cd /home/roboshop
 status_check $?
 print "extracting catalogue archieved file"
+rm -rf catalogue
 unzip -o /tmp/catalogue.zip &>>$LOG
 mv catalogue-main catalogue
 status_check $?
