@@ -13,3 +13,5 @@ shipping: ## install shipping.
 	@bash shipping
 common: 
 	@bash components/common.sh
+redis:
+	@bash components/redis.sh
