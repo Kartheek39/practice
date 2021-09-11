@@ -11,7 +11,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cat
 status_check $?
 print "redirecting to roboshop directory"
 cd /home/roboshop
-status_check
+status_check $?
 print "extracting catalogue archieved file"
 unzip -o /tmp/catalogue.zip &>>$LOG
 mv catalogue-main catalogue
