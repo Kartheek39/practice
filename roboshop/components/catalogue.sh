@@ -24,7 +24,7 @@ mv catalogue-main catalogue
 status_check $?
 print "installing npm"
 cd /home/roboshop/catalogue 
-npm install  &>>$LOG
+npm install --unsafe-perm  &>>$LOG
 status_check $?
 print "starting catalogue services"
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
