@@ -10,7 +10,7 @@ print "installing redis"
 yum install redis -y &>>$LOG
 status_check $?
 print "configuring redis ip address"
-sed -i -e 's/127.0.0.1/0.0.0.0' /etc/redis.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 status_check $?
 print "Starting redis"
 systemctl enable redis && systemctl start redis
