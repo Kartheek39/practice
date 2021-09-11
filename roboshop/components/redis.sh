@@ -13,5 +13,5 @@ print "configuring redis ip address"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 status_check $?
 print "Starting redis"
-systemctl enable redis && systemctl start redis
+systemctl enable redis && systemctl start redis &>>$LOG
 status_check $?
