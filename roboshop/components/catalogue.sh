@@ -1,9 +1,9 @@
 #!/bin/bash
 source components/common.sh
-print "installing nodejs\t"
+print "installing nodejs\t\t"
 yum install nodejs make gcc-c++ -y &>>$LOG
 status_check $?
-print "adding user\t\t"
+print "adding user\t\t\t"
 id roboshop &>>$LOG
 if [ $? -eq 0 ]; then
     echo "user already exit. so skipping" &>>$LOG
@@ -22,7 +22,7 @@ rm -rf catalogue
 unzip -o /tmp/catalogue.zip &>>$LOG
 mv catalogue-main catalogue
 status_check $?
-print "installing npm\t\t"
+print "installing npm\t\t\t"
 cd /home/roboshop/catalogue 
 npm install --unsafe-perm  &>>$LOG
 status_check $?
