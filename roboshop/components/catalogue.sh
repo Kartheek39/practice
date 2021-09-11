@@ -22,8 +22,8 @@ unzip -o /tmp/catalogue.zip &>>$LOG
 mv catalogue-main catalogue
 status_check $?
 print "installing npm"
-cd /home/roboshop/catalogue
-npm install
+cd /home/roboshop/catalogue 
+npm install  &>>$LOG
 status_check $?
 print "starting catalogue services"
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
