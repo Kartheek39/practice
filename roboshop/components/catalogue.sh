@@ -28,7 +28,7 @@ npm install --unsafe-perm  &>>$LOG
 status_check $?
 chown roboshop:roboshop -R /home/roboshop
 print "setting systemd service\t\t"
-sed -i -e 's/MONGO DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service
+sed -i -e 's/MONGO_DNSNAME/mongodb.roboshop.internal/' /home/roboshop/catalogue/systemd.service
 status_check $?
 print "starting catalogue services\t"
 mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
