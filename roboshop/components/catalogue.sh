@@ -4,7 +4,12 @@ print "installing nodejs"
 yum install nodejs make gcc-c++ -y &>>$LOG
 status_check $?
 print "adding user"
-useradd roboshop
+id roboshop &>>$LOG
+if [ $? -eq 0 ]; then
+    echo "user already exit. so skipping" &>>$LOG
+else 
+    useradd roboshop
+fi
 status_check $?
 print "downloading catalogue file"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
