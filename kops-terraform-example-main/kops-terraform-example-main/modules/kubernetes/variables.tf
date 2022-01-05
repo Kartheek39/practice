@@ -22,7 +22,7 @@ variable "kops_cluster" {
     region = string
     state_bucket = string
     node_image = string
-#    nodes=list(any)
+    nodes=list(any)
 #    addons=list(string)
   })
 }
