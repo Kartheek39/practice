@@ -76,7 +76,7 @@ data "template_file" "kops_values_file" {
     min_worker_nodes = var.kops_cluster.min_worker_nodes
     max_worker_nodes = var.kops_cluster.max_worker_nodes
     master_node_type = var.kops_cluster.master_node_type
-#    addons = join("", data.template_file.addons.*.rendered)
+    addons = join("", data.template_file.addons.*.rendered)
   }
 }
 
