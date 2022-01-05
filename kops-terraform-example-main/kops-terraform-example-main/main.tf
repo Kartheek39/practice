@@ -2,7 +2,7 @@ module "network" {
   source          = "./modules/vpc"
   environment     = terraform.workspace
   vpc             = var.vpc
-  cluster_name    = "nclouds-kops-example"
+  cluster_name    = "sample"
 }
 
 module "kubernetes" {
