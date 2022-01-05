@@ -11,7 +11,7 @@ variable "kops_cluster" {
     state_bucket = string
     node_image = string
     nodes=list(any)
-#    addons=list(string)
+    addons=list(string)
   })
 }
 
