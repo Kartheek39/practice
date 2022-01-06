@@ -161,7 +161,7 @@ module "kubernetes" {
   kops_cluster    = "${var.cluster_name}"
   vpc_region  = "${module.vpc.region}"
   state_bucket = "${var.state_bucket}"
-  vpc_region   = "${var.vpc_region}"
+  #vpc_region   = "${var.vpc_region}"
 }
 
 
