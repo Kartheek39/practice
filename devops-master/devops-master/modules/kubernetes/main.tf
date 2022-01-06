@@ -86,7 +86,7 @@
 #}
 
 resource "null_resource" "provision_kops" {
-#  depends_on = [ local_file.rendered_kops_values_file ]
+  depends_on = [ local_file.rendered_kops_values_file ]
 
   triggers = {
     bucket = var.state_bucket
