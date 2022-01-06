@@ -18,7 +18,7 @@ resource "aws_vpc" "vpc" {
 # AWS Subnets setup
 #
 locals{
-  private_subnets_count = "${length(var.vpc.private_subnets)
+  private_subnets_count = "${length(var.vpc.private_subnets)"
 }
 resource "aws_subnet" "public_subnets" {
   count                   = "${length(var.vpc.public_subnets)}"
