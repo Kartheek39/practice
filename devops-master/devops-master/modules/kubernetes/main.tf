@@ -89,14 +89,14 @@ resource "null_resource" "provision_kops" {
   depends_on = [ local_file.rendered_kops_values_file ]
 
   triggers = {
-    bucket = var.kops_cluster.state_bucket
-    dns_zone = var.kops_cluster.dns_zone
-    cluster_name = local.cluster_name
+    bucket = var.state_bucket
+    dns_zone = var.dns_zone
+    cluster_name = var.cluster_name
   }
 
   provisioner "local-exec" {
     environment = {
-      KOPS_STATE_STORE = "s3://${var.kops_cluster.state_bucket}"
+      KOPS_STATE_STORE = "s3://${var.state_bucket}"
     }
 
     command = <<EOT
@@ -104,8 +104,8 @@ resource "null_resource" "provision_kops" {
     --template ${path.module}/templates/kops/worker.tmpl.yaml \
     --template ${path.module}/templates/kops/master.tmpl.yaml --values ${path.root}/output/values-rendered.yaml > ${path.root}/output/output.yaml --name sample
     kops create -f ${path.root}/output/output.yaml
-    kops create secret --name ${local.cluster_name}.${var.kops_cluster.dns_zone} sshpublickey admin -i ~/.ssh/id_rsa.pub
-    kops update cluster ${local.cluster_name}.${var.kops_cluster.dns_zone} --yes
+    kops create secret --name ${var.cluster_name}.${var.dns_zone} sshpublickey admin -i ~/.ssh/id_rsa.pub
+    kops update cluster ${var.cluster_name}.${var.dns_zone} --yes
 EOT
   }
 
