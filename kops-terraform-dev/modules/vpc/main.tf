@@ -120,13 +120,13 @@ resource "aws_subnet" "private_subnets" {
 ## AWS Route Table setup
 ## Grant the VPC internet access on its main route table
 #
-#resource "aws_route_table" "public_route_table" {
-#  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
-#  vpc_id = "${aws_vpc.vpc.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_public_route"
-#  }
-#}
+resource "aws_route_table" "public_route_table" {
+  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
+  vpc_id = "${aws_vpc.vpc.id}"
+  tags = {
+    Name = "${var.environment}_${var.cluster_name}_public_route"
+  }
+}
 #resource "aws_route" "internet_gateway_to_public_route_table" {
 #  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
 #  route_table_id         = "${aws_route_table.public_route_table.0.id}"
@@ -135,13 +135,13 @@ resource "aws_subnet" "private_subnets" {
 #}
 #
 #
-#resource "aws_route_table" "private_route_table" {
-#  count             = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
-#  vpc_id            = "${aws_vpc.vpc.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_private_route"
-#  }
-#}
+resource "aws_route_table" "private_route_table" {
+  count             = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
+  vpc_id            = "${aws_vpc.vpc.id}"
+  tags = {
+    Name = "${var.environment}_${var.cluster_name}_private_route"
+  }
+}
 #
 #resource "aws_route" "nat_gateway_to_private_route_table" {
 #  count                  = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
