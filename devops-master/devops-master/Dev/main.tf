@@ -170,6 +170,7 @@ module "kubernetes" {
   vpc_cidr_block   = "${var.vpc_cidr_block}"
   worker_node_type = "${var.worker_node_type}"
   kubernetes_version = "${var.kubernetes_version}"
+  node_image = "${var.node_image}"
 }
 
 

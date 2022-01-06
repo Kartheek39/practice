@@ -172,3 +172,8 @@ variable "kubernetes_version" {
   description = "Availability zone for private subnet"
   default     = "1.20.7"
 }
+
+variable "node_image" {
+  description = "Availability zone for private subnet"
+  default     = "099720109477/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20210415"
+}
