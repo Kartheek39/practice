@@ -58,7 +58,7 @@ resource "null_resource" "output" {
 #}
 
 data "template_file" "kops_values_file" {
-  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
+  template = file("${path.module}/templates/kops/values.tmpl.yaml")
 
   vars = {
     cluster_name = var.cluster_name
