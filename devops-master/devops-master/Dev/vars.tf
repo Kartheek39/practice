@@ -139,5 +139,12 @@ variable "cluster_name" {
   default     = "sample-kops"
 }
 
+variable "dns_zone" {
+  description = "Availability zone for private subnet"
+  default     = "jainankur229.xyz"
+
+  variable "kops_cluster.state_bucket" {
+    description = "Availability zone for private subnet"
+    default     = "cluster-kops"
 
 
