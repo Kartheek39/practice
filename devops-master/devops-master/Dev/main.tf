@@ -154,7 +154,7 @@ module "private_route_table" {
 #}
 
 module "kubernetes" {
-  source              = "./modules/kubernetes"
+  source              = "../modules/kubernetes"
   vpc                 = module.network.vpc
   public_subnets  = module.network.public_subnets
   private_subnets = module.network.private_subnets
