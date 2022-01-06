@@ -10,7 +10,7 @@ variable "private_subnets" {
   default     = []
 }
 
-variable "kops_cluster" {
+variable "vars" {
   type = object({
     cluster_name = string
     dns_zone = string
