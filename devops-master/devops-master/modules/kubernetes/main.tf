@@ -71,12 +71,12 @@ data "template_file" "kops_values_file" {
     region = var.cluster_region
     private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
     public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
-    nodes = join("", data.template_file.node_group_definitions.*.rendered)
+    #nodes = join("", data.template_file.node_group_definitions.*.rendered)
     worker_node_type = var.worker_node_type
     min_worker_nodes = var.min_worker_nodes
     max_worker_nodes = var.max_worker_nodes
     master_node_type = var.master_node_type
-    addons = join("", data.template_file.addons.*.rendered)
+    #addons = join("", data.template_file.addons.*.rendered)
   }
 }
 
