@@ -1,13 +1,13 @@
-#locals {
-#  cluster_name = "${var.cluster_name}-${terraform.workspace}"
-#}
+locals {
+  cluster_name = "${var.cluster_name}-${terraform.workspace}"
+}
 
 
-#resource "null_resource" "output" {
-#  provisioner "local-exec" {
-#    command = "mkdir -p ${path.root}/output/${local.cluster_name}"
-#  }
-#}
+resource "null_resource" "output" {
+  provisioner "local-exec" {
+    command = "mkdir -p ${path.root}/output/${local.cluster_name}"
+  }
+}
 
 #data "template_file" "public_subnet_map" {
 #  count    = length(var.public_subnets)
