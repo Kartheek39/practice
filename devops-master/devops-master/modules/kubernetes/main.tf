@@ -10,15 +10,15 @@ resource "null_resource" "output" {
 }
 
 data "template_file" "public_subnet_map" {
-  count    = length(var.public_subnets)
+#  count    = length(var.public_subnets)
   template = "${file("${path.module}/templates/kops/subnet.tmpl.yaml")}"
 
   vars = {
-    name = "PublicSubnet-${count.index}"
-    cidr = var.public_subnets[count.index].cidr_block
-    id = var.public_subnets[count.index].id
+    name = var.subnet_public_1
+    cidr = var.subnet_public_cidr_1
+#    id = var.public_subnets[count.index].id
     type = "Public"
-    az = var.public_subnets[count.index].availability_zone
+    az = var.subnet_public_az_1
   }
 }
 
