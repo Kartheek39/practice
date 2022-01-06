@@ -44,29 +44,29 @@ resource "aws_subnet" "private_subnets" {
     })
 }
 
+
+ RDS subnet
+
+resource "aws_subnet" "private_rds_subnets" {
+  count                   = "${length(var.vpc.rds_subnets)}"
+  vpc_id                  = "${aws_vpc.vpc.id}"
+  availability_zone       = "${element(data.aws_availability_zones.available.names, count.index % length(data.aws_availability_zones.available.names))}"
+  cidr_block              = "${var.vpc.rds_subnets[count.index]}"
+  map_public_ip_on_launch = false
+  tags = tomap({
+     "Name"="${var.environment}_${var.cluster_name}_private_rds_${count.index}",
+    })
+}
+
+resource "aws_db_subnet_group" "rds" {
+  count      = "${length(var.vpc.rds_subnets) > 0 ? 1 : 0}"
+  name       = "${var.environment}-rds-subnet-group"
+  subnet_ids =  ["${aws_subnet.private_rds_subnets.*.id}"]
+}
+
 #
-# RDS subnet
+# ElastiCache subnet
 #
-#resource "aws_subnet" "private_rds_subnets" {
-#  count                   = "${length(var.vpc.rds_subnets)}"
-#  vpc_id                  = "${aws_vpc.vpc.id}"
-#  availability_zone       = "${element(data.aws_availability_zones.available.names, count.index % length(data.aws_availability_zones.available.names))}"
-#  cidr_block              = "${var.vpc.rds_subnets[count.index]}"
-#  map_public_ip_on_launch = false
-#  tags = tomap({
-#     "Name"="${var.environment}_${var.cluster_name}_private_rds_${count.index}",
-#    })
-#}
-#
-#resource "aws_db_subnet_group" "rds" {
-#  count      = "${length(var.vpc.rds_subnets) > 0 ? 1 : 0}"
-#  name       = "${var.environment}-rds-subnet-group"
-#  subnet_ids =  ["${aws_subnet.private_rds_subnets.*.id}"]
-#}
-#
-##
-## ElastiCache subnet
-##
 #resource "aws_subnet" "private_elasticache_subnets" {
 #  count = "${length(var.vpc.elasticache_subnets)}"
 #
@@ -78,55 +78,55 @@ resource "aws_subnet" "private_subnets" {
 #     "Name"="${var.environment}_private_es_${count.index}",
 #    })
 #}
-#
+
 #resource "aws_elasticache_subnet_group" "elasticache" {
 #  count       = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
 #  name        = "${var.environment}-es-subnet-group"
 #  description = "ElastiCache subnet group"
 #  subnet_ids  = ["${aws_subnet.private_elasticache_subnets.*.id}"]
 #}
+
 #
-##
-## AWS IGW setup
-##
-#resource "aws_internet_gateway" "igw" {
-#  vpc_id = "${aws_vpc.vpc.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_igw"
-#  }
-#}
+# AWS IGW setup
 #
-##
-## AWS Nat Gateway setup
-## Used for the private subnets
-#resource "aws_eip" "nat_gw" {
-#  count       = "${local.private_subnets_count> 0 ? 1 :0}"
-#  vpc         = true
-#  depends_on  = [aws_subnet.private_subnets]
-#}
-#
-#resource "aws_nat_gateway" "nat_gw" {
-#  count         = "${local.private_subnets_count > 0 ? 1 : 0}"
-#  allocation_id = "${aws_eip.nat_gw.0.id}"
-#  subnet_id     = "${aws_subnet.public_subnets.0.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_nat"
-#  }
-#  depends_on = [aws_subnet.private_subnets,aws_subnet.public_subnets]
-#}
-#
-#
-##
-## AWS Route Table setup
-## Grant the VPC internet access on its main route table
-#
-resource "aws_route_table" "public_route_table" {
-  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
+resource "aws_internet_gateway" "igw" {
   vpc_id = "${aws_vpc.vpc.id}"
   tags = {
-    Name = "${var.environment}_${var.cluster_name}_public_route"
+    Name = "${var.environment}_${var.cluster_name}_igw"
   }
 }
+
+#
+# AWS Nat Gateway setup
+# Used for the private subnets
+resource "aws_eip" "nat_gw" {
+  count       = "${local.private_subnets_count> 0 ? 1 :0}"
+  vpc         = true
+  depends_on  = [aws_subnet.private_subnets]
+}
+
+resource "aws_nat_gateway" "nat_gw" {
+  count         = "${local.private_subnets_count > 0 ? 1 : 0}"
+  allocation_id = "${aws_eip.nat_gw.0.id}"
+  subnet_id     = "${aws_subnet.public_subnets.0.id}"
+  tags = {
+    Name = "${var.environment}_${var.cluster_name}_nat"
+  }
+  depends_on = [aws_subnet.private_subnets,aws_subnet.public_subnets]
+}
+
+
+#
+# AWS Route Table setup
+# Grant the VPC internet access on its main route table
+
+#resource "aws_route_table" "public_route_table" {
+#  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
+#  vpc_id = "${aws_vpc.vpc.id}"
+#  tags = {
+#    Name = "${var.environment}_${var.cluster_name}_public_route"
+#  }
+#}
 #resource "aws_route" "internet_gateway_to_public_route_table" {
 #  count = "${length(var.vpc.public_subnets) > 0 ? 1 : 0}"
 #  route_table_id         = "${aws_route_table.public_route_table.0.id}"
@@ -135,13 +135,13 @@ resource "aws_route_table" "public_route_table" {
 #}
 #
 #
-resource "aws_route_table" "private_route_table" {
-  count             = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
-  vpc_id            = "${aws_vpc.vpc.id}"
-  tags = {
-    Name = "${var.environment}_${var.cluster_name}_private_route"
-  }
-}
+#resource "aws_route_table" "private_route_table" {
+#  count             = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
+#  vpc_id            = "${aws_vpc.vpc.id}"
+#  tags = {
+#    Name = "${var.environment}_${var.cluster_name}_private_route"
+#  }
+#}
 #
 #resource "aws_route" "nat_gateway_to_private_route_table" {
 #  count                  = "${length(var.vpc.private_subnets) > 0 ? 1 : 0}"
@@ -165,8 +165,8 @@ resource "aws_route_table" "private_route_table" {
 #  destination_cidr_block = "0.0.0.0/0"
 #  nat_gateway_id         = "${aws_nat_gateway.nat_gw.0.id}"
 #}
-#
-#
+
+
 #resource "aws_route_table" "elasticache_route_table" {
 #  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
 #  vpc_id = "${aws_vpc.vpc.id}"
@@ -174,15 +174,15 @@ resource "aws_route_table" "private_route_table" {
 #    Name = "${var.environment}_${var.cluster_name}_rds_route"
 #  }
 #}
-#
+
 #resource "aws_route" "nat_gateway_to_elasticache_route_table" {
 #  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
 #  route_table_id         = "${aws_route_table.elasticache_route_table.0.id}"
 #  destination_cidr_block = "0.0.0.0/0"
 #  nat_gateway_id         = "${aws_nat_gateway.nat_gw.0.id}"
 #}
-#
-#
+
+
 #resource "aws_route_table_association" "public_subnet" {
 #  count          = "${length(var.vpc.public_subnets)}"
 #  subnet_id      = "${element(aws_subnet.public_subnets.*.id, count.index)}"
@@ -201,17 +201,17 @@ resource "aws_route_table" "private_route_table" {
 #  subnet_id      = "${element(aws_subnet.private_rds_subnets.*.id, count.index)}"
 #  route_table_id = "${aws_route_table.rds_route_table.0.id}"
 #}
-#
+
 #resource "aws_route_table_association" "elasticache_subnet" {
 #  count          = "${length(var.vpc.elasticache_subnets)}"
 #  subnet_id      = "${element(aws_subnet.private_elasticache_subnets.*.id, count.index)}"
 #  route_table_id = "${aws_route_table.elasticache_route_table.0.id}"
 #}
+
 #
-##
-## VPC Peering connection in same region
-##
+# VPC Peering connection in same region
 #
+
 #resource "aws_vpc_peering_connection" "peering" {
 #  count         = "${length(keys(var.vpc_to_connect)) > 0 ? 1 : 0}"
 #  peer_vpc_id   = "${var.vpc_to_connect["vpc_id"]}"
