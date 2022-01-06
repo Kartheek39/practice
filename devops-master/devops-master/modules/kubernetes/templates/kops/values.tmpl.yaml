@@ -1,7 +1,7 @@
 # values.yaml
 cluster: ${cluster_name}
 dnsZone: ${dns_zone}
-kubernetesVersion: ${kubernetes_version}
+#kubernetesVersion: ${kubernetes_version}
 bucket: ${state_bucket}
 nodeImage: ${node_image}
 
@@ -10,17 +10,17 @@ vpc:
   cidr: ${vpc_cidr}
   zone: ${region}
 
-privateSubnets:
-${private_subnets}
-
-publicSubnets:
-${public_subnets}
-
-nodes:
-${nodes}
-
-addons:
-${addons}
+#privateSubnets:
+#${private_subnets}
+#
+#publicSubnets:
+#${public_subnets}
+#
+#nodes:
+#${nodes}
+#
+#addons:
+#${addons}
 
 master:
   instanceType: ${master_node_type}
