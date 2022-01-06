@@ -171,6 +171,7 @@ module "kubernetes" {
   worker_node_type = "${var.worker_node_type}"
   kubernetes_version = "${var.kubernetes_version}"
   node_image = "${var.node_image}"
+  subnet_public_1 = "${var.subnet_public_1}"
 }
 
 
