@@ -134,6 +134,10 @@ variable "subnet_private_az_4" {
   default     = "us-east-1d"
 }
 
+variable "cluster_name" {
+  description = "Availability zone for private subnet"
+  default     = "sample-kops"
+}
 
 
 

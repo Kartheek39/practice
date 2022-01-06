@@ -137,22 +137,28 @@ module "private_route_table" {
   private_rt_name ="${var.private_rt_name}"
 }
 
-module "private_route_association_1" {
-  source = "../modules/rt_association"
+#module "private_route_association_1" {
+#  source = "../modules/rt_association"
+#
+#  subnet_id      = "${module.subnet_private_1.id}"
+#  route_table_id = "${module.private_route_table.private_rt_id}"
+#
+#}
+#
+#module "private_route_association_2" {
+#  source = "../modules/rt_association"
+#
+#  subnet_id      = "${module.subnet_private_2.id}"
+#  route_table_id = "${module.private_route_table.private_rt_id}"
+#
+#}
 
-  subnet_id      = "${module.subnet_private_1.id}"
-  route_table_id = "${module.private_route_table.private_rt_id}"
-  
+module "kubernetes" {
+  source              = "./modules/kubernetes"
+  vpc                 = module.network.vpc
+  public_subnets  = module.network.public_subnets
+  private_subnets = module.network.private_subnets
+  kops_cluster    = var.kops_cluster
 }
-
-module "private_route_association_2" {
-  source = "../modules/rt_association"
-
-  subnet_id      = "${module.subnet_private_2.id}"
-  route_table_id = "${module.private_route_table.private_rt_id}"
-  
-}
-
-
 
 
