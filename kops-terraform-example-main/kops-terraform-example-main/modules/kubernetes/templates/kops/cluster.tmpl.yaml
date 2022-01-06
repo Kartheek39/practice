@@ -232,6 +232,6 @@ spec:
   {{end}}
   topology:
     dns:
-      type: Public
+      type: Private
     masters: private
     nodes: private
