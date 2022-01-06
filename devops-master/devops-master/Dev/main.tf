@@ -91,6 +91,28 @@ module "subnet_private_2" {
   #route_table_id = "${module.private_route_table.private_rt_id}"
 }
 
+module "subnet_private_3" {
+  source = "../modules/subnet_private"
+
+  vpc_id      = "${module.vpc.id}"
+  vpc_region  = "${module.vpc.region}"
+  subnet_name = "${var.subnet_private_3}"
+  subnet_cidr = "${var.subnet_private_cidr_3}"
+  subnet_az   = "${var.subnet_private_az_3}"
+  # route_table_id = "${module.private_route_table.private_rt_id}"
+}
+
+module "subnet_private_4" {
+  source = "../modules/subnet_private"
+
+  vpc_id      = "${module.vpc.id}"
+  vpc_region  = "${module.vpc.region}"
+  subnet_name = "${var.subnet_private_4}"
+  subnet_cidr = "${var.subnet_private_cidr_4}"
+  subnet_az   = "${var.subnet_private_az_4}"
+  # route_table_id = "${module.private_route_table.private_rt_id}"
+}
+
 module "natgw" {
    source = "../modules/NAT"
 

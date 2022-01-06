@@ -9,13 +9,13 @@
 
 variable "vpc_region" {
   description = "AWS region"
-  default     = "us-west-2"
+  default     = "us-east-1"
 }
 
 # VPC Config
 variable "vpc_name" {
   description = "VPC for Dev"
-  default     = "Dev-VPC"
+  default     = "Kops-vpc"
 }
 
 variable "vpc_cidr_block" {
@@ -24,7 +24,7 @@ variable "vpc_cidr_block" {
 }
 
 variable "igw_name" {
-  default = "IGW-Dev"
+  default = "kops-IGW-Dev"
 }
 
 ############Public Subnet 1
@@ -40,7 +40,7 @@ variable "subnet_public_cidr_1" {
 
 variable "subnet_public_az_1" {
   description = "Availability zone for public subnet 1"
-  default     = "us-west-2a"
+  default     = "us-east-1a"
 }
 
 variable "public_rt_name" {
@@ -60,7 +60,7 @@ variable "subnet_public_cidr_2" {
 
 variable "subnet_public_az_2" {
   description = "Availability zone for public subnet 2"
-  default     = "us-west-2b"
+  default     = "us-east-1b"
 }
 
 
@@ -77,7 +77,7 @@ variable "subnet_private_cidr_1" {
 
 variable "subnet_private_az_1" {
   description = "Availability zone for private subnet 1"
-  default     = "us-west-2a"
+  default     = "us-east-1a"
 }
 
 ############Private Subnet 2
@@ -93,10 +93,47 @@ variable "subnet_private_cidr_2" {
 
 variable "subnet_private_az_2" {
   description = "Availability zone for private subnet"
-  default     = "us-west-2b"
+  default     = "us-east-1b"
 }
 
 variable "private_rt_name" {
   default = "RT-Dev-Private"
 }
+
+############Private Subnet 3
+
+variable "subnet_private_3" {
+  description = "Private subnet for VPC"
+  default     = "dev-priv-subnet-3"
+}
+
+variable "subnet_private_cidr_3" {
+  description = "CIDR for private subnet 3"
+  default     = "172.16.5.0/24"
+}
+
+variable "subnet_private_az_3" {
+  description = "Availability zone for private subnet"
+  default     = "us-east-1c"
+}
+
+############Private Subnet 4
+
+variable "subnet_private_4" {
+  description = "Private subnet for VPC"
+  default     = "dev-priv-subnet-4"
+}
+
+variable "subnet_private_cidr_4" {
+  description = "CIDR for private subnet 3"
+  default     = "172.16.6.0/24"
+}
+
+variable "subnet_private_az_4" {
+  description = "Availability zone for private subnet"
+  default     = "us-east-1d"
+}
+
+
+
 
