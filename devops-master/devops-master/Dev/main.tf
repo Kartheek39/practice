@@ -159,11 +159,15 @@ module "kubernetes" {
 #  public_subnets  = "${module.subnet_public}"
 #  private_subnets = "${module.subnet_private}"
 #  kops_cluster    = "${var.cluster_name}"
-  vpc_region  = "${module.vpc.region}"
+  vpc_region  = "${var.vpc_region}"
   state_bucket = "${var.state_bucket}"
   #vpc_region   = "${var.vpc_region}"
   cluster_name  = "${var.cluster_name}"
   dns_zone      = "${var.dns_zone}"
+  min_worker_nodes = "${var.min_worker_nodes}"
+  max_worker_nodes = "${var.max_worker_nodes}"
+  master_node_type = "${var.master_node_type}"
+  vpc_cidr_block   = "${var.vpc_cidr_block}"
 }
 
 
