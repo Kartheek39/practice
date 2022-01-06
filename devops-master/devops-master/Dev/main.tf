@@ -158,7 +158,7 @@ module "kubernetes" {
   vpc                 = module.network.vpc
   public_subnets  = module.network.public_subnets
   private_subnets = module.network.private_subnets
-  kops_cluster    = var.kops_cluster
+  kops_cluster    = var.cluster_name
 }
 
 
