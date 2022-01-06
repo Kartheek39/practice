@@ -167,3 +167,8 @@ variable "master_node_type" {
   description = "Availability zone for private subnet"
   default     = "t3.medium"
 }
+
+variable "kubernetes_version" {
+  description = "Availability zone for private subnet"
+  default     = "1.20.7"
+}

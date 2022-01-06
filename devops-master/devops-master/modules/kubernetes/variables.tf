@@ -35,3 +35,4 @@ variable "min_worker_nodes" {}
 variable "max_worker_nodes" {}
 variable "master_node_type" {}
 variable "vpc_cidr_block" {}
+variable "kubernetes_version" {}

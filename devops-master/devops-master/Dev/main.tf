@@ -169,6 +169,7 @@ module "kubernetes" {
   master_node_type = "${var.master_node_type}"
   vpc_cidr_block   = "${var.vpc_cidr_block}"
   worker_node_type = "${var.worker_node_type}"
+  kubernetes_version = "${var.kubernetes_version}"
 }
 
 
