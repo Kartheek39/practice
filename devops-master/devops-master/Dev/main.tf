@@ -168,6 +168,7 @@ module "kubernetes" {
   max_worker_nodes = "${var.max_worker_nodes}"
   master_node_type = "${var.master_node_type}"
   vpc_cidr_block   = "${var.vpc_cidr_block}"
+  worker_node_type = "${var.worker_node_type}"
 }
 
 
