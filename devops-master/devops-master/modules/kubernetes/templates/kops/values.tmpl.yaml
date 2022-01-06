@@ -3,7 +3,7 @@ cluster: ${cluster_name}
 dnsZone: ${dns_zone}
 #kubernetesVersion: ${kubernetes_version}
 bucket: ${state_bucket}
-nodeImage: ${node_image}
+#nodeImage: ${node_image}
 
 vpc:
   id: ${vpc_id}

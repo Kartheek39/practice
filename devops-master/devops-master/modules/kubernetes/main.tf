@@ -70,7 +70,6 @@ data "template_file" "kops_values_file" {
     min_worker_nodes = var.min_worker_nodes
     max_worker_nodes = var.max_worker_nodes
     master_node_type = var.master_node_type
-
   }
 }
 
