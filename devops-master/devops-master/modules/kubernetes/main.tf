@@ -9,53 +9,53 @@ resource "null_resource" "output" {
   }
 }
 
-data "template_file" "public_subnet_map" {
-#  count    = length(var.public_subnets)
-  template = "${file("${path.module}/templates/kops/subnet.tmpl.yaml")}"
+#data "template_file" "public_subnet_map" {
+##  count    = length(var.public_subnets)
+#  template = "${file("${path.module}/templates/kops/subnet.tmpl.yaml")}"
+#
+#  vars = {
+#    name = var.subnet_public_1
+#    cidr = var.subnet_public_cidr_1
+##    id = var.public_subnets[count.index].id
+#    type = "Public"
+#    az = var.subnet_public_az_1
+#  }
+#}
 
-  vars = {
-    name = var.subnet_public_1
-    cidr = var.subnet_public_cidr_1
-#    id = var.public_subnets[count.index].id
-    type = "Public"
-    az = var.subnet_public_az_1
-  }
-}
+#data "template_file" "node_group_definitions" {
+#  count    = length(var.kops_cluster.nodes)
+#  template = "${file("${path.module}/templates/kops/agents.tmpl.yaml")}"
+#
+#  vars = {
+#    name = var.kops_cluster.nodes[count.index].name
+#    role = var.kops_cluster.nodes[count.index].role
+#    instanceType = var.kops_cluster.nodes[count.index].instanceType
+#    minSize = var.kops_cluster.nodes[count.index].minSize
+#    maxSize = var.kops_cluster.nodes[count.index].maxSize
+#  }
+#}
 
-data "template_file" "node_group_definitions" {
-  count    = length(var.kops_cluster.nodes)
-  template = "${file("${path.module}/templates/kops/agents.tmpl.yaml")}"
+#data "template_file" "addons" {
+#  count    = length(var.kops_cluster.addons)
+#  template = "${file("${path.module}/templates/kops/addons.tmpl.yaml")}"
+#
+#  vars = {
+#    name = var.kops_cluster.addons[count.index]
+#  }
+#}
 
-  vars = {
-    name = var.kops_cluster.nodes[count.index].name
-    role = var.kops_cluster.nodes[count.index].role
-    instanceType = var.kops_cluster.nodes[count.index].instanceType
-    minSize = var.kops_cluster.nodes[count.index].minSize
-    maxSize = var.kops_cluster.nodes[count.index].maxSize
-  }
-}
-
-data "template_file" "addons" {
-  count    = length(var.kops_cluster.addons)
-  template = "${file("${path.module}/templates/kops/addons.tmpl.yaml")}"
-
-  vars = {
-    name = var.kops_cluster.addons[count.index]
-  }
-}
-
-data "template_file" "private_subnet_map" {
-  count    = length(var.private_subnets)
-  template = "${file("${path.module}/templates/kops/subnet.tmpl.yaml")}"
-
-  vars = {
-    name = "PrivateSubnet-${count.index}"
-    cidr = var.private_subnets[count.index].cidr_block
-    id = var.private_subnets[count.index].id
-    type = "Private"
-    az = var.private_subnets[count.index].availability_zone
-  }
-}
+#data "template_file" "private_subnet_map" {
+#  count    = length(var.private_subnets)
+#  template = "${file("${path.module}/templates/kops/subnet.tmpl.yaml")}"
+#
+#  vars = {
+#    name = "PrivateSubnet-${count.index}"
+#    cidr = var.private_subnets[count.index].cidr_block
+#    id = var.private_subnets[count.index].id
+#    type = "Private"
+#    az = var.private_subnets[count.index].availability_zone
+#  }
+#}
 
 data "template_file" "kops_values_file" {
 #  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
