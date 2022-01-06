@@ -172,6 +172,8 @@ module "kubernetes" {
   kubernetes_version = "${var.kubernetes_version}"
   node_image = "${var.node_image}"
   subnet_public_1 = "${var.subnet_public_1}"
+  subnet_public_az_1 = "${var.subnet_public_az_1}"
+  subnet_public_cidr_1 = "${var.subnet_public_cidr_1}"
 }
 
 
