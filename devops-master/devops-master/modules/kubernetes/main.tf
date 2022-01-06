@@ -65,7 +65,7 @@ data "template_file" "kops_values_file" {
     dns_zone = var.dns_zone
 #    kubernetes_version = var.kops_cluster.kubernetes_version
     state_bucket = var.state_bucket
-    node_image = var.kops_cluster.node_image
+#    node_image = var.kops_cluster.node_image
 #    vpc_id = var.vpc.id
     vpc_cidr = var.vpc_cidr_block
     region = var.vpc_region
