@@ -69,8 +69,8 @@ data "template_file" "kops_values_file" {
     vpc_id = var.vpc.id
     vpc_cidr = var.vpc.cidr_block
     region = var.cluster_region
-    private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
-    public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
+    #private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
+    #public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
     #nodes = join("", data.template_file.node_group_definitions.*.rendered)
     worker_node_type = var.worker_node_type
     min_worker_nodes = var.min_worker_nodes
