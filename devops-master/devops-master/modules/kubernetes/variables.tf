@@ -40,4 +40,3 @@ variable "node_image" {}
 variable "subnet_public_1" {}
 variable "subnet_public_cidr_1" {}
 variable "subnet_public_az_1" {}
-variable "subnet_public_1" {}
