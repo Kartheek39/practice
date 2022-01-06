@@ -63,20 +63,14 @@ data "template_file" "kops_values_file" {
   vars = {
     cluster_name = var.cluster_name
     dns_zone = var.dns_zone
-    #kubernetes_version = var.kops_cluster.kubernetes_version
     state_bucket = var.state_bucket
-#    node_image = var.kops_cluster.node_image
-#    vpc_id = var.vpc.id
     vpc_cidr = var.vpc_cidr_block
     region = var.vpc_region
-    #private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
-    #public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
-    #nodes = join("", data.template_file.node_group_definitions.*.rendered)
     worker_node_type = var.worker_node_type
     min_worker_nodes = var.min_worker_nodes
     max_worker_nodes = var.max_worker_nodes
     master_node_type = var.master_node_type
-    #addons = join("", data.template_file.addons.*.rendered)
+
   }
 }
 
