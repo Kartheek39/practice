@@ -35,14 +35,14 @@ data "template_file" "node_group_definitions" {
   }
 }
 
-data "template_file" "addons" {
-  count    = length(var.kops_cluster.addons)
-  template = "${file("${path.module}/templates/kops/addons.tmpl.yaml")}"
-
-  vars = {
-    name = var.kops_cluster.addons[count.index]
-  }
-}
+#data "template_file" "addons" {
+#  count    = length(var.kops_cluster.addons)
+#  template = "${file("${path.module}/templates/kops/addons.tmpl.yaml")}"
+#
+#  vars = {
+#    name = var.kops_cluster.addons[count.index]
+#  }
+#}
 
 data "template_file" "private_subnet_map" {
   count    = length(var.private_subnets)
