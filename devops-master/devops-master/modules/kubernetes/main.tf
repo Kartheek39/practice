@@ -102,7 +102,7 @@ resource "null_resource" "provision_kops" {
     command = <<EOT
     kops toolbox template --template ${path.module}/templates/kops/cluster.tmpl.yaml \
     --template ${path.module}/templates/kops/worker.tmpl.yaml \
-    --template ${path.module}/templates/kops/master.tmpl.yaml --values ${path.root}/output/values-rendered.yaml > ${path.root}/output/output.yaml --sample
+    --template ${path.module}/templates/kops/master.tmpl.yaml --values ${path.root}/output/values-rendered.yaml > ${path.root}/output/output.yaml --name sample
     kops create -f ${path.root}/output/output.yaml
     kops create secret --name ${var.cluster_name}.${var.dns_zone} sshpublickey admin -i ~/.ssh/id_rsa.pub
     kops update cluster ${var.cluster_name}.${var.dns_zone} --yes
