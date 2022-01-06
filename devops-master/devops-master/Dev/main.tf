@@ -154,11 +154,11 @@ module "private_route_table" {
 #}
 
 module "kubernetes" {
-  source              = "../modules/kubernetes"
-  vpc                 = module.network.vpc
-  public_subnets  = module.network.public_subnets
-  private_subnets = module.network.private_subnets
-  kops_cluster    = var.cluster_name
+  source          = "../modules/kubernetes"
+  vpc             = "${module.vpc.id}"
+  public_subnets  = "{module.subnet_public}"
+  private_subnets = "{module.subnet_private}
+  kops_cluster    = "{var.cluster_name}"
 }
 
 
