@@ -57,33 +57,33 @@
 #  }
 #}
 
-#data "template_file" "kops_values_file" {
-#  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
-#
-#  vars = {
-#    cluster_name = local.cluster_name
-#    dns_zone = var.kops_cluster.dns_zone
-#    kubernetes_version = var.kops_cluster.kubernetes_version
-#    state_bucket = var.kops_cluster.state_bucket
-#    node_image = var.kops_cluster.node_image
-#    vpc_id = var.vpc.id
-#    vpc_cidr = var.vpc.cidr_block
-#    region = var.kops_cluster.region
-#    private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
-#    public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
-#    nodes = join("", data.template_file.node_group_definitions.*.rendered)
-#    worker_node_type = var.kops_cluster.worker_node_type
-#    min_worker_nodes = var.kops_cluster.min_worker_nodes
-#    max_worker_nodes = var.kops_cluster.max_worker_nodes
-#    master_node_type = var.kops_cluster.master_node_type
-#    addons = join("", data.template_file.addons.*.rendered)
-#  }
-#}
+data "template_file" "kops_values_file" {
+  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
 
-#resource "local_file" "rendered_kops_values_file" {
-#  content  = data.template_file.kops_values_file.rendered
-#  filename = "${path.root}/output/values-rendered.yaml"
-#}
+  vars = {
+    cluster_name = var.cluster_name
+    dns_zone = var.dns_zone
+    #kubernetes_version = var.kops_cluster.kubernetes_version
+    state_bucket = var.state_bucket
+    #node_image = var.kops_cluster.node_image
+    vpc_id = var.vpc.id
+    vpc_cidr = var.vpc.cidr_block
+    region = var.cluster_region
+    private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
+    public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
+    nodes = join("", data.template_file.node_group_definitions.*.rendered)
+    worker_node_type = var.worker_node_type
+    min_worker_nodes = var.min_worker_nodes
+    max_worker_nodes = var.max_worker_nodes
+    master_node_type = var.master_node_type
+    addons = join("", data.template_file.addons.*.rendered)
+  }
+}
+
+resource "local_file" "rendered_kops_values_file" {
+  content  = data.template_file.kops_values_file.rendered
+  filename = "${path.root}/output/values-rendered.yaml"
+}
 
 resource "null_resource" "provision_kops" {
   depends_on = [ local_file.rendered_kops_values_file ]

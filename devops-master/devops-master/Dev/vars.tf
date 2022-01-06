@@ -148,4 +148,22 @@ variable "state_bucket" {
   description = "Availability zone for private subnet"
   default     = "cluster-kops"
 }
+variable "min_worker_nodes" {
+  description = "Availability zone for private subnet"
+  default     = "1"
+}
 
+variable "max_worker_nodes" {
+  description = "Availability zone for private subnet"
+  default     = "3"
+}
+
+variable "worker_node_type" {
+  description = "Availability zone for private subnet"
+  default     = "t3.large"
+}
+
+variable "master_node_type" {
+  description = "Availability zone for private subnet"
+  default     = "t3.medium"
+}
