@@ -30,3 +30,8 @@ variable "vpc_region" {}
 variable "cluster_name" {}
 variable "dns_zone" {}
 variable "state_bucket" {}
+variable "worker_node_type" {}
+variable "min_worker_nodes" {}
+variable "max_worker_nodes" {}
+variable "master_node_type" {}
+variable "vpc_cidr_block" {}
