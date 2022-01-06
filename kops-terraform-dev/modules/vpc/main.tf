@@ -65,28 +65,6 @@ resource "aws_db_subnet_group" "rds" {
 }
 
 #
-# ElastiCache subnet
-#
-#resource "aws_subnet" "private_elasticache_subnets" {
-#  count = "${length(var.vpc.elasticache_subnets)}"
-#
-#  vpc_id                  = "${aws_vpc.vpc.id}"
-#  availability_zone       = "${element(data.aws_availability_zones.available.names, count.index % length(data.aws_availability_zones.available.names))}"
-#  cidr_block              = "${var.vpc.elasticache_subnets[count.index]}"
-#  map_public_ip_on_launch = false
-#  tags = tomap({
-#     "Name"="${var.environment}_private_es_${count.index}",
-#    })
-#}
-
-#resource "aws_elasticache_subnet_group" "elasticache" {
-#  count       = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
-#  name        = "${var.environment}-es-subnet-group"
-#  description = "ElastiCache subnet group"
-#  subnet_ids  = ["${aws_subnet.private_elasticache_subnets.*.id}"]
-#}
-
-#
 # AWS IGW setup
 #
 resource "aws_internet_gateway" "igw" {
