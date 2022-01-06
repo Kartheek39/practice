@@ -156,9 +156,12 @@ module "private_route_table" {
 module "kubernetes" {
   source          = "../modules/kubernetes"
   vpc             = "${module.vpc.id}"
-  public_subnets  = "${module.subnet_public}"
-  private_subnets = "${module.subnet_private}"
+#  public_subnets  = "${module.subnet_public}"
+#  private_subnets = "${module.subnet_private}"
   kops_cluster    = "${var.cluster_name}"
+  vpc_region  = "${module.vpc.region}"
+  state_bucket = "${var.state_bucket}"
+  vpc_region   = "${var.vpc_region}"
 }
 
 
