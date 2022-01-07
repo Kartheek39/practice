@@ -21,7 +21,7 @@ variable "vpc" {
     public_subnets = list(string)
     private_subnets = list(string)
     rds_subnets     = list(string)
-    elasticache_subnets = list(string)
+#    elasticache_subnets = list(string)
     dns_hostnames = bool
     dns_support   = bool
     tenancy       = string
