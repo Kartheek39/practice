@@ -28,5 +28,6 @@ spec:
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
+  {{range $j, $subnet := $x.privateSubnets}}
   - {{$subnet.name}}
 {{end}}

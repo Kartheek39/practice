@@ -32,5 +32,4 @@ spec:
   subnets:
   {{range $j, $subnet := $x.privateSubnets}}
   - {{$subnet.name}}
-  {{end}}
 {{end}}
