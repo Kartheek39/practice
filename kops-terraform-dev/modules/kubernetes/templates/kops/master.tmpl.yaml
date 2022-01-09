@@ -1,5 +1,5 @@
 {{$x := .}}
-{{range $i, $subnet := .privateSubnets}}
+#{{range $i, $subnet := .privateSubnets}}
 {{if $i}}
 ---
 {{end}}
@@ -9,7 +9,7 @@ metadata:
   creationTimestamp: null
   labels:
     kops.k8s.io/cluster: {{$x.cluster}}.{{$x.dnsZone}}
-  name: master-{{$subnet.zone}}
+  name: master
 spec:
   image: {{$x.nodeImage}}
   machineType: {{$x.master.instanceType}}
@@ -21,12 +21,13 @@ spec:
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
-    kops.k8s.io/instancegroup: master-{{$subnet.name}}
+    kops.k8s.io/instancegroup: master
   role: Master
   suspendProcesses:
   - AZRebalance
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
-  - {{$subnet.name}}
+    default_sample_private_2
+#  - {{$subnet.name}}
 {{end}}
