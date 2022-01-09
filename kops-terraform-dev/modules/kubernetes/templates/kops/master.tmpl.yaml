@@ -9,7 +9,7 @@ metadata:
   creationTimestamp: null
   labels:
     kops.k8s.io/cluster: {{$x.cluster}}.{{$x.dnsZone}}
-  name: master-{{$subnet.id}}
+  name: master-{{$subnet.name}}
 spec:
   image: {{$x.nodeImage}}
   machineType: {{$x.master.instanceType}}
@@ -21,7 +21,7 @@ spec:
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
-    kops.k8s.io/instancegroup: master-{{$subnet.id}}
+    kops.k8s.io/instancegroup: master-{{$subnet.name}}
   role: Master
   suspendProcesses:
   - AZRebalance
