@@ -21,13 +21,13 @@ spec:
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
-    kops.k8s.io/instancegroup: master-{{$subnet.zone}}
+    kops.k8s.io/instancegroup: master-{{$subnet.name}}
   role: Master
   suspendProcesses:
   - AZRebalance
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
-  {{range $j, $subnet := $x.privateSubnets}}
+#  {{range $j, $subnet := $x.privateSubnets}}
   - {{$subnet.name}}
 {{end}}
