@@ -57,7 +57,7 @@ spec:
     {{range $0, $subnet := .privateSubnets}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
-      name: master-{{$subnet.zone}}
+      name: slave-{{$subnet.zone}}
     {{end}}
     manager: {}
     memoryRequest: 100Mi
@@ -73,7 +73,7 @@ spec:
     {{range $i, $subnet := .privateSubnets}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
-      name: master-{{$subnet.zone}}
+      name: slave-{{$subnet.zone}}
     {{end}}
     manager: {}
     memoryRequest: 100Mi
