@@ -9,10 +9,10 @@ spec:
 {{range $i, $addon := .addons}}
   - manifest: {{$addon.name}}
 {{end}}
-  api:
-    loadBalancer:
-      type: Public
-      class: Network
+#  api:
+#    loadBalancer:
+#      type: Public
+#      class: Network
   authorization:
     rbac: {}
   channel: stable
