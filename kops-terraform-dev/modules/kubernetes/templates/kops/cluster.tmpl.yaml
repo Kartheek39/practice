@@ -47,39 +47,40 @@ spec:
     version: 1.4.6
   docker:
     skipInstall: true
-#  etcdClusters:
-#  - backups:
-#      backupStore: s3://{{.bucket}}/{{.cluster}}.{{.dnsZone}}/backups/etcd/main
-#    cpuRequest: 200m
-#    enableEtcdTLS: true
-#    enableTLSAuth: true
-#    etcdMembers:
+  etcdClusters:
+  - backups:
+      backupStore: s3://{{.bucket}}/{{.cluster}}.{{.dnsZone}}/backups/etcd/main
+    cpuRequest: 200m
+    enableEtcdTLS: true
+    enableTLSAuth: true
+    etcdMembers:
 #    {{range $i, $subnet := .privateSubnets}}
-#    - instanceGroup: master-{{$subnet.zone}}
-#      encryptedVolume: true
-#      name: master-{{$subnet.zone}}
-#    {{end}}
-#    manager: {}
-#    memoryRequest: 100Mi
-#    name: main
-#    provider: Manager
-#    version: 3.4.13
-#  - backups:
-#      backupStore: s3://{{.bucket}}/{{.cluster}}.{{.dnsZone}}/backups/etcd/events
-#    cpuRequest: 100m
-#    enableEtcdTLS: true
-#    enableTLSAuth: true
-#    etcdMembers:
-#    {{range $i, $subnet := .privateSubnets}}
-#    - instanceGroup: master-{{$subnet.zone}}
-#      encryptedVolume: true
-#      name: master-{{$subnet.zone}}
-#    {{end}}
-#    manager: {}
-#    memoryRequest: 100Mi
-#    name: events
-#    provider: Manager
-#    version: 3.4.13
+      10.2.5.0/24
+    - instanceGroup: master-{{$subnet.zone}}
+      encryptedVolume: true
+      name: master-{{$subnet.zone}}
+    {{end}}
+    manager: {}
+    memoryRequest: 100Mi
+    name: main
+    provider: Manager
+    version: 3.4.13
+  - backups:
+      backupStore: s3://{{.bucket}}/{{.cluster}}.{{.dnsZone}}/backups/etcd/events
+    cpuRequest: 100m
+    enableEtcdTLS: true
+    enableTLSAuth: true
+    etcdMembers:
+    {{range $i, $subnet := .privateSubnets}}
+    - instanceGroup: master-{{$subnet.zone}}
+      encryptedVolume: true
+      name: master-{{$subnet.zone}}
+    {{end}}
+    manager: {}
+    memoryRequest: 100Mi
+    name: events
+    provider: Manager
+    version: 3.4.13
   iam:
     allowContainerRegistry: true
     legacy: false
