@@ -5,10 +5,10 @@ metadata:
   creationTimestamp: null
   name: {{.cluster}}.{{.dnsZone}}
 spec:
-  addons:
-{{range $i, $addon := .addons}}
-  - manifest: {{$addon.name}}
-{{end}}
+#  addons:
+#{{range $i, $addon := .addons}}
+#  - manifest: {{$addon.name}}
+#{{end}}
   api:
     loadBalancer:
       type: Public

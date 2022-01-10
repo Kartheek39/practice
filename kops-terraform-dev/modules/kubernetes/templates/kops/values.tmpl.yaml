@@ -19,8 +19,8 @@ ${public_subnets}
 nodes:
 ${nodes}
 
-addons:
-${addons}
+#addons:
+#${addons}
 
 master:
   instanceType: ${master_node_type}
