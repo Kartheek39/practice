@@ -28,5 +28,5 @@ spec:
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
-  - {{$subnet.zone}}
+  - {{$subnet.name}}
 {{end}}
