@@ -1,5 +1,5 @@
 {{$x := .}}
-{{range (1), $subnet := .privateSubnets}}
+{{range $i(1), $subnet := .privateSubnets}}
 {{if $i}}
 ---
 {{end}}
