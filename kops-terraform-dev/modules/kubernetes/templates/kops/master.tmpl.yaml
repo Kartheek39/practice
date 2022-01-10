@@ -22,7 +22,7 @@ spec:
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
     kops.k8s.io/instancegroup: master-{{$subnet.zone}}
-  role: master
+  role: Master
   suspendProcesses:
   - AZRebalance
   rootVolumeSize: 50
