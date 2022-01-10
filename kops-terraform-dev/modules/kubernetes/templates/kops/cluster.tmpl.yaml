@@ -55,7 +55,7 @@ spec:
     enableTLSAuth: true
     etcdMembers:
 #    {{range $i, $subnet := .privateSubnets}}
-    .{{$subnet.name}}
+    {{$subnet.zone}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
       name: master-{{$subnet.zone}}
