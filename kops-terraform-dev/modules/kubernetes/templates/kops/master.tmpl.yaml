@@ -1,6 +1,6 @@
 {{$x := .}}
 {{$subnet := .privateSubnets}}
-#{{if $i}}
+{{if $i==0}}
 ---
 {{end}}
 apiVersion: kops/v1alpha2
@@ -21,8 +21,8 @@ spec:
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
-    kops.k8s.io/instancegroup: slave-{{$subnet.zone}}
-  role: Slave
+    kops.k8s.io/instancegroup: master-{{$subnet.zone}}
+  role: master
   suspendProcesses:
   - AZRebalance
   rootVolumeSize: 50

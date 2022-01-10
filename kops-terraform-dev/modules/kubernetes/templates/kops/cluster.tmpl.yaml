@@ -54,10 +54,10 @@ spec:
     enableEtcdTLS: true
     enableTLSAuth: true
     etcdMembers:
-    {{range $0, $subnet := .privateSubnets}}
+    {{range $i, $subnet := .privateSubnets}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
-      name: slave-{{$subnet.zone}}
+      name: master-{{$subnet.zone}}
     {{end}}
     manager: {}
     memoryRequest: 100Mi
