@@ -55,7 +55,7 @@ spec:
     enableTLSAuth: true
     etcdMembers:
     {{range $i, $subnet := .privateSubnets}}
-    - instanceGroup: master-[us-east-1a]
+    - instanceGroup: master-{{subnet.zone}}
       encryptedVolume: true
       name: master-{{$subnet.zone}}
     {{end}}
@@ -71,7 +71,7 @@ spec:
     enableTLSAuth: true
     etcdMembers:
     {{range $i, $subnet := .privateSubnets}}
-    - instanceGroup: master-[us-east-1a]
+    - instanceGroup: master-{{subnet.zone}}
       encryptedVolume: true
       name: master-{{$subnet.zone}}
     {{end}}
