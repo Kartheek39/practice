@@ -1,6 +1,6 @@
 {{$x := .}}
-{{range $i, $subnet := .privateSubnets}}
-{{if $i}}
+#{{range $i, $subnet := .privateSubnets}}
+#{{if $i}}
 ---
 {{end}}
 apiVersion: kops/v1alpha2
@@ -9,7 +9,7 @@ metadata:
   creationTimestamp: null
   labels:
     kops.k8s.io/cluster: {{$x.cluster}}.{{$x.dnsZone}}
-  name: master-{{$subnet.zone}}
+  name: master-10.2.3.0/24
 spec:
   image: {{$x.nodeImage}}
   machineType: {{$x.master.instanceType}}
@@ -21,12 +21,12 @@ spec:
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
-    kops.k8s.io/instancegroup: master-{{$subnet.zone}}
+    kops.k8s.io/instancegroup: master-10.2.3.0/24
   role: Master
   suspendProcesses:
   - AZRebalance
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
-  - {{$subnet.zone}}
+  - 10.2.3.0/24
 {{end}}
