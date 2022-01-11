@@ -1,5 +1,5 @@
 {{$x := .}}
-#{{range $i, $subnet := .privateSubnets}}
+{{range $i, $subnet := .privateSubnets}}
 #{{if $i}}
 {{$subnet.id}}
 ---
@@ -24,10 +24,10 @@ spec:
 #    kubelet.kubernetes.io/role: {{$x.master.role}}
     kops.k8s.io/instancegroup: master-{{$subnet.zone}}
   role: Master
-  suspendProcesses:
-  - AZRebalance
-  rootVolumeSize: 50
-  rootVolumeOptimization: true
+#  suspendProcesses:
+#  - AZRebalance
+#  rootVolumeSize: 50
+#  rootVolumeOptimization: true
   subnets:
   - {{$subnet.name}}
 {{end}}
