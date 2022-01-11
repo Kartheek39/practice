@@ -6,7 +6,7 @@ variable "public_subnets" {
 }
 
 variable "private_subnets" {
-  type        = list(number)
+  type        = list(map(bool))
   default     = []
 }
 
