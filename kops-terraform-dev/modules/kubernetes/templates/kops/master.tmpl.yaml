@@ -18,7 +18,7 @@ spec:
   minSize: 1
 #  cloudLabels:
 #    k8s.io/cluster-autoscaler/{{$x.cluster}}.{{$x.dnsZone}}: "true"
-#    k8s.io/cluster-autoscaler/enabled: "true"
+    k8s.io/cluster-autoscaler/enabled: "true"
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
   nodeLabels:
     kubelet.kubernetes.io/role: {{$x.master.role}}
