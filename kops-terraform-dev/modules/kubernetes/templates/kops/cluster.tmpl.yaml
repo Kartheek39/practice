@@ -225,7 +225,7 @@ spec:
   {{end}}
 
   # Private subnets
-  {{range $i, $subnet := .privateSubnets}}
+  {{$subnet := .privateSubnets[1]}}
   - id:   {{$subnet.id}}
     name: {{$subnet.name}}
     type: {{$subnet.type}}
