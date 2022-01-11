@@ -6,7 +6,7 @@ variable "public_subnets" {
 }
 
 variable "private_subnets" {
-  type        = list(map({count.index}))
+  type        = list({count.index,1})
   default     = []
 }
 
