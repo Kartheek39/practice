@@ -233,11 +233,12 @@ spec:
 #  {{end}}
 #
   # Private subnets
-#  {{range $i, $subnet := .privateSubnets}}
+  {{range $i, $subnet := .privateSubnets}}
 #  - id:   {{$subnet.id}}
-#    name: {{$subnet.name}}
+    name: {{$subnet.name}}
 #    type: {{$subnet.type}}
 #    zone: {{$subnet.zone}}
+     cidr: {{subnet.cidr}}
 #  {{end}}
   topology:
     dns:
