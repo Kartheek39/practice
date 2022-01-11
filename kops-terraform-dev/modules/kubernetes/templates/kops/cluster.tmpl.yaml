@@ -86,7 +86,7 @@ spec:
   keyStore: s3://{{.bucket}}/{{.cluster}}.{{.dnsZone}}/pki
   kubeAPIServer:
     allowPrivileged: true
-    anonymousAuth: false
+    anonymousAuth: true
     apiAudiences:
     - kubernetes.svc.default
     apiServerCount: 1
