@@ -11,7 +11,7 @@ vpc:
   zone: ${region}
 
 privateSubnets:
-${private_subnets}
+${private_subnets[1]}
 
 publicSubnets:
 ${public_subnets}
