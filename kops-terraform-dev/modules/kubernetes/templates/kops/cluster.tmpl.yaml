@@ -216,29 +216,21 @@ spec:
   sshAccess:
   - 0.0.0.0/0
   subnets:
-    - cidr: {{$subnet.cidr}}
-        name: {{$subnet.name}}
-        type: private
-        zone: {{$subnet.name}}
-#    - cidr: 10.2.4.0/24
-#        name: us-east-1b
-#        type: Private
-#        zone: us-east-1b
   # Public subnets
-#  {{range $i, $subnet := .publicSubnets}}
-#  - id:   {{$subnet.id}}
-#    name: {{$subnet.name}}
-#    type: {{$subnet.type}}
-#    zone: {{$subnet.zone}}
-#  {{end}}
-#
+  {{range $i, $subnet := .publicSubnets}}
+  - id:   {{$subnet.id}}
+    name: {{$subnet.name}}
+    type: {{$subnet.type}}
+    zone: {{$subnet.zone}}
+  {{end}}
+
   # Private subnets
   {{range $i, $subnet := .privateSubnets}}
-#  - id:   {{$subnet.id}}
+  - id:   {{$subnet.id}}
     name: {{$subnet.name}}
-#    type: {{$subnet.type}}
-#    zone: {{$subnet.zone}}
-     cidr: {{subnet.cidr}}
+    type: {{$subnet.type}}
+    zone: {{$subnet.zone}}
+    cidr: {{subnet.cidr}}
   {{end}}
   topology:
     dns:
