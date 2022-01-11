@@ -216,14 +216,14 @@ spec:
   sshAccess:
   - 0.0.0.0/0
   subnets:
-    - cidr: 10.2.3.0/24
-        name: us-east-1a
+    - cidr: {{$subnet.cidr}}
+        name: {{$subnet.name}}
         type: private
-        zone: us-east-1a
-    - cidr: 10.2.4.0/24
-        name: us-east-1b
-        type: Private
-        zone: us-east-1b
+        zone: {{$subnet.name}}
+#    - cidr: 10.2.4.0/24
+#        name: us-east-1b
+#        type: Private
+#        zone: us-east-1b
   # Public subnets
 #  {{range $i, $subnet := .publicSubnets}}
 #  - id:   {{$subnet.id}}

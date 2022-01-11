@@ -26,17 +26,17 @@
 #    addons=list(string)
 #  })
 #}
-variable "vpc_region" {}
-variable "cluster_name" {}
-variable "dns_zone" {}
-variable "state_bucket" {}
-variable "worker_node_type" {}
-variable "min_worker_nodes" {}
-variable "max_worker_nodes" {}
-variable "master_node_type" {}
-variable "vpc_cidr_block" {}
-variable "kubernetes_version" {}
-variable "node_image" {}
-variable "subnet_public_1" {}
-variable "subnet_public_cidr_1" {}
-variable "subnet_public_az_1" {}
+#variable "vpc_region" {}
+#variable "cluster_name" {}
+#variable "dns_zone" {}
+#variable "state_bucket" {}
+#variable "worker_node_type" {}
+#variable "min_worker_nodes" {}
+#variable "max_worker_nodes" {}
+#variable "master_node_type" {}
+#variable "vpc_cidr_block" {}
+#variable "kubernetes_version" {}
+#variable "node_image" {}
+#variable "subnet_public_1" {}
+#variable "subnet_public_cidr_1" {}
+#variable "subnet_public_az_1" {}

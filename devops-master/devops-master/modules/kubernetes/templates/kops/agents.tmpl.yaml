@@ -1,5 +1,0 @@
-  - name: ${name}
-    role: ${role}
-    instanceType: ${instanceType}
-    minSize: ${minSize}
-    maxSize: ${maxSize}

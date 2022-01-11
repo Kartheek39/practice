@@ -57,28 +57,28 @@ resource "null_resource" "output" {
 #  }
 #}
 
-data "template_file" "kops_values_file" {
-#  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
-
-  vars = {
-    cluster_name = var.cluster_name
-    dns_zone = var.dns_zone
-    kubernetes_version = var.kubernetes_version
-    state_bucket = var.state_bucket
-    node_image = var.node_image
-#    vpc_id = var.vpc.id
-    vpc_cidr = var.vpc_cidr_block
-    region = var.vpc_region
-#    private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
-#    public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
-#    nodes = join("", data.template_file.node_group_definitions.*.rendered)
-    worker_node_type = var.worker_node_type
-    min_worker_nodes = var.min_worker_nodes
-    max_worker_nodes = var.max_worker_nodes
-    master_node_type = var.master_node_type
-#    addons = join("", data.template_file.addons.*.rendered)
-  }
-}
+#data "template_file" "kops_values_file" {
+##  template = "${file("${path.module}/templates/kops/values.tmpl.yaml")}"
+#
+#  vars = {
+#    cluster_name = var.cluster_name
+#    dns_zone = var.dns_zone
+#    kubernetes_version = var.kubernetes_version
+#    state_bucket = var.state_bucket
+#    node_image = var.node_image
+##    vpc_id = var.vpc.id
+#    vpc_cidr = var.vpc_cidr_block
+#    region = var.vpc_region
+##    private_subnets = join("", data.template_file.private_subnet_map.*.rendered)
+##    public_subnets = join("", data.template_file.public_subnet_map.*.rendered)
+##    nodes = join("", data.template_file.node_group_definitions.*.rendered)
+#    worker_node_type = var.worker_node_type
+#    min_worker_nodes = var.min_worker_nodes
+#    max_worker_nodes = var.max_worker_nodes
+#    master_node_type = var.master_node_type
+##    addons = join("", data.template_file.addons.*.rendered)
+#  }
+#}
 
 resource "local_file" "rendered_kops_values_file" {
   content  = data.template_file.kops_values_file.rendered

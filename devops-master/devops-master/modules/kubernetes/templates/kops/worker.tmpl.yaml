@@ -1,36 +1,19 @@
-# File worker.tmpl.yaml
-{{$x := .}}
-{{range $i, $node := .nodes}}
-{{if $i}}
----
-{{end}}
-apiVersion: kops/v1alpha2
+apiVersion: kops.k8s.io/v1alpha2
 kind: InstanceGroup
 metadata:
-  creationTimestamp: null
+  creationTimestamp: "2020-04-28T00:24:39Z"
+  generation: 1
   labels:
-    kops.k8s.io/cluster: {{$x.cluster}}.{{$x.dnsZone}}
-  name: {{$node.name}}
+    kops.k8s.io/cluster: MY_CLUSTER_NAME
+  name: nodes
 spec:
-  image: {{$x.nodeImage}}
-  machineType: {{$node.instanceType}}
-  maxSize: {{$node.maxSize}}
-  minSize: {{$node.minSize}}
-  # Autoscaling group Tags
-  cloudLabels:
-    k8s.io/cluster-autoscaler/{{$x.cluster}}.{{$x.dnsZone}}: "true"
-    k8s.io/cluster-autoscaler/enabled: "true"
-    # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
+  image: kope.io/k8s-1.16-debian-stretch-amd64-hvm-ebs-2020-01-17
+  machineType: m3.medium
+  maxSize: 0 # changed from 1 to 0 to avoid being charged prematurely
+  minSize: 0
   nodeLabels:
-    kubelet.kubernetes.io/role: {{$node.role}}
-    kops.k8s.io/instancegroup: {{$node.name}}
+    kops.k8s.io/instancegroup: nodes
   role: Node
-  suspendProcesses:
-  - AZRebalance
-  rootVolumeSize: 50
-  rootVolumeOptimization: true
   subnets:
-  {{range $j, $subnet := $x.privateSubnets}}
-  - {{$subnet.name}}
-  {{end}}
-{{end}}
+    - us-west-2a
+    - us-west-2b
