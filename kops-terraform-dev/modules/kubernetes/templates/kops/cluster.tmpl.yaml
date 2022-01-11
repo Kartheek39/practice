@@ -90,7 +90,7 @@ spec:
     apiAudiences:
     - kubernetes.svc.default
     apiServerCount: 1
-    authorizationMode: Node,RBAC
+#    authorizationMode: Node,RBAC
     bindAddress: 0.0.0.0
     cloudProvider: aws
     enableAdmissionPlugins:
@@ -161,7 +161,7 @@ spec:
     image: k8s.gcr.io/kube-scheduler:v1.20.7
     leaderElection:
       leaderElect: true
-#    logLevel: 2
+    logLevel: 2
   kubelet:
     anonymousAuth: false
     cgroupDriver: systemd
@@ -200,7 +200,7 @@ spec:
     evictionHard: memory.available<100Mi,nodefs.available<10%,nodefs.inodesFree<5%,imagefs.available<10%,imagefs.inodesFree<5%
     hostnameOverride: '@aws'
     kubeconfigPath: /var/lib/kubelet/kubeconfig
-#    logLevel: 2
+    logLevel: 2
     networkPluginMTU: 9001
     networkPluginName: cni
     nonMasqueradeCIDR: 100.64.0.0/10
