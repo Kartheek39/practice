@@ -6,8 +6,8 @@ variable "public_subnets" {
 }
 
 variable "private_subnets" {
-  type        = list({count.index,1})
-  default     = []
+#  type        = list(any)
+  default     = [index(var.private_subnets.1)]
 }
 
 variable "kops_cluster" {
