@@ -13,9 +13,9 @@ spec:
     loadBalancer:
       type: Public
       class: Network
-  authorization:
-    rbac: {}
-  channel: stable
+#  authorization:
+#    rbac: {}
+#  channel: stable
   cloudConfig:
     manageStorageClasses: true
   cloudProvider: aws
@@ -165,7 +165,7 @@ spec:
   kubelet:
     anonymousAuth: false
     cgroupDriver: systemd
-    authenticationTokenWebhook: false
+    authenticationTokenWebhook: true
     cgroupRoot: /
     cloudProvider: aws
     clusterDNS: 100.64.0.10
