@@ -239,7 +239,7 @@ spec:
 #    type: {{$subnet.type}}
 #    zone: {{$subnet.zone}}
      cidr: {{subnet.cidr}}
-#  {{end}}
+  {{end}}
   topology:
     dns:
       type: Public
