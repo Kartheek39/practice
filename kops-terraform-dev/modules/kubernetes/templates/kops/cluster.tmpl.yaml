@@ -163,7 +163,7 @@ spec:
       leaderElect: true
     logLevel: 2
   kubelet:
-    anonymousAuth: false
+    anonymousAuth: true
     cgroupDriver: systemd
     authenticationTokenWebhook: true
     cgroupRoot: /
@@ -186,7 +186,7 @@ spec:
   masterInternalName: api.internal.{{.cluster}}.{{.dnsZone}}
   masterPublicName: api.{{.cluster}}.{{.dnsZone}}
   masterKubelet:
-    anonymousAuth: false
+    anonymousAuth: true
     cgroupRoot: /
     cgroupDriver: systemd
     cloudProvider: aws
