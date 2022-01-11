@@ -16,7 +16,7 @@ spec:
   machineType: {{$x.master.instanceType}}
   maxSize: 1
   minSize: 1
-#  cloudLabels:
+  cloudLabels:
 #    k8s.io/cluster-autoscaler/{{$x.cluster}}.{{$x.dnsZone}}: "true"
     k8s.io/cluster-autoscaler/enabled: "true"
     # kubernetes.io/cluster/{{$x.cluster}}.{{$x.dnsZone}}: owned
