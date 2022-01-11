@@ -1,6 +1,7 @@
 {{$x := .}}
-{{range $i, $subnet := .privateSubnets}}
+#{{range $i, $subnet := .privateSubnets}}
 #{{if $i}}
+{{$subnet.id}}
 ---
 {{end}}
 apiVersion: kops/v1alpha2
