@@ -12,9 +12,9 @@ variable "vpc" {
   description = "Map of AWS VPC settings"
 
   default = {
-    cidr            = "172.31.0.0/16"
-    public_subnets  = ["172.31.0.0/24","172.31.1.0/24"]
-    private_subnets = ["172.31.3.0/24","172.31.4.0/24","172.31.5.0/24"]
+    cidr            = "10.1.0.0/16"
+    public_subnets  = ["10.1.0.0/24","10.1.1.0/24"]
+    private_subnets = ["10.1.3.0/24","10.1.4.0/24","10.1.5.0/24"]
     rds_subnets     = []
 #    elasticache_subnets = []
     dns_hostnames   = true
