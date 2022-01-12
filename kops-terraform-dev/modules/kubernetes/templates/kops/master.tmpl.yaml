@@ -1,6 +1,6 @@
 {{$x := .}}
 {{$subnet := .privateSubnets[1]}}
-#{{if $i}}
+{{if $i}}
 #{{$subnet.id}}
 ---
 {{end}}
