@@ -13,7 +13,7 @@ variable "vpc" {
 
   default = {
     cidr            = "172.31.0.0/16"
-    public_subnets  = ["10.2.0.0/24","10.2.1.0/24"]
+    public_subnets  = ["172.31.0.0/24","172.31.1.0/24"]
     private_subnets = ["172.31.3.0/24","172.31.4.0/24","172.31.5.0/24"]
     rds_subnets     = []
 #    elasticache_subnets = []
