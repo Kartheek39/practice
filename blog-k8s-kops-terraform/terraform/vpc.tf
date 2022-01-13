@@ -23,4 +23,4 @@ module "dev_vpc" {
 #  public_subnet_tags = {
 #    "kubernetes.io/role/elb" = true
 #  }
-#}
+}
