@@ -1,5 +1,5 @@
 apiVersion: kops/v1alpha2
-kind: Cluste
+kind: Clu
 metadata:
   name: {{.kubernetes_cluster_name.value}}
 spec:
