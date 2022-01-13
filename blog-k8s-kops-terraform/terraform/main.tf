@@ -1,18 +1,28 @@
-module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+provider "aws" {
+  region = "eu-west-2"
+}
 
-  name = "my-vpc"
-  cidr = var.vpc_cidr_block
-
-  azs             = [var.avail_zone]
-  private_subnets = [var.private_cidr_block]
-  public_subnets  = [var.public_cidr_block]
-
-  enable_nat_gateway = true
-  enable_vpn_gateway = true
-
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
+terraform {
+  backend "s3" {
+    bucket = "tf-state-blog"
+    key    = "dev/terraform"
+    region = "eu-west-2"
   }
 }
+
+locals {
+  azs                    = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
+  environment            = "dev"
+  kops_state_bucket_name = "${local.environment}-kops-state"
+  // Needs to be a FQDN
+  kubernetes_cluster_name = "k8s-dev0.domain.com"
+  ingress_ips             = ["10.0.0.100/32", "10.0.0.101/32"]
+  vpc_name                = "${local.environment}-vpc"
+
+  tags = {
+    environment = "${local.environment}"
+    terraform   = true
+  }
+}
+
+data "aws_region" "current" {}

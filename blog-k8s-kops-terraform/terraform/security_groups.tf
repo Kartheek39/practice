@@ -1,7 +1,7 @@
 // Used to allow web access to the k8s API ELB
 resource "aws_security_group" "k8s_common_http" {
   name   = "${local.environment}_k8s_common_http"
-  vpc_id = "${module.vpc.vpc_id}"
+  vpc_id = "${module.dev_vpc.vpc_id}"
   tags   = "${merge(local.tags)}"
 
 #  ingress {
