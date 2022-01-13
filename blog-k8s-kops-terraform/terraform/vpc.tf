@@ -3,7 +3,7 @@ module "dev_vpc" {
   version            = "1.46.0"
   name               = "${local.vpc_name}"
   cidr               = "172.31.0.0/16"
-  azs                = ["${local.azs}"]
+  azs                = ["us-east-1a", "us-east-1b"]
   private_subnets    = ["172.31.1.0/24", "172.31.2.0/24", "172.31.3.0/24"]
   public_subnets     = ["172.31.4.0/24", "172.31.5.0/24", "172.31.6.0/24"]
   enable_nat_gateway = true
