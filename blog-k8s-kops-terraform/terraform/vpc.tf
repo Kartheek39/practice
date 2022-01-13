@@ -1,6 +1,6 @@
 module "dev_vpc" {
   source             = "terraform-aws-modules/vpc/aws"
-  version            = "1.1.3"
+  version            = "1.46.0"
   name               = "${local.vpc_name}"
   cidr               = "172.31.0.0/16"
   azs                = ["${local.azs}"]
