@@ -52,10 +52,10 @@ output "common_http_sg_id" {
 
 // Needed for kops
 
-output "kops_s3_bucket" {
-  value = "${aws_s3_bucket.kops_state.bucket}"
-}
+#output "kops_s3_bucket" {
+#  value = "${aws_s3_bucket.kops_state.bucket}"
+#}
 
-output "kubernetes_cluster_name" {
-  value = "${local.kubernetes_cluster_name}"
-}
+#output "kubernetes_cluster_name" {
+#  value = "${local.kubernetes_cluster_name}"
+#}
