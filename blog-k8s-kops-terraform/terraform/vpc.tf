@@ -2,10 +2,10 @@ module "dev_vpc" {
   source             = "terraform-aws-modules/vpc/aws"
   version            = "1.46.0"
   name               = "${local.vpc_name}"
-  cidr               = "10.0.0.0/16"
+  cidr               = "172.31.0.0/16"
   azs                = ["${local.azs}"]
-  private_subnets    = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets     = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  private_subnets    = ["172.31.1.0/24", "172.31.2.0/24", "172.31.3.0/24"]
+  public_subnets     = ["172.31.4.0/24", "172.31.5.0/24", "172.31.6.0/24"]
   enable_nat_gateway = true
 
   tags = {

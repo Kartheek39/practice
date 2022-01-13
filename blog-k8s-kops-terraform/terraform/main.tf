@@ -1,21 +1,21 @@
 provider "aws" {
-  region = "eu-west-2"
+  region = "us-east-1"
 }
 
 terraform {
   backend "s3" {
-    bucket = "tf-state-blog"
+    bucket = "cluster-kops"
     key    = "dev/terraform"
-    region = "eu-west-2"
+    region = "us-east-1"
   }
 }
 
 locals {
-  azs                    = ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
+  azs                    = ["us-east-1a", "us-east-1b", "us-east-1c"]
   environment            = "dev"
   kops_state_bucket_name = "${local.environment}-kops-state"
   // Needs to be a FQDN
-  kubernetes_cluster_name = "k8s-dev0.domain.com"
+  kubernetes_cluster_name = "sample.jainankur229.xyz"
   ingress_ips             = ["10.0.0.100/32", "10.0.0.101/32"]
   vpc_name                = "${local.environment}-vpc"
 
