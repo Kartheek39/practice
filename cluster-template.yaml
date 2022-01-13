@@ -42,11 +42,11 @@ spec:
     - 0.0.0.0/0
   subnets:
     - cidr: 172.20.32.0/19
-      name: pri-sub-01
+      name: us-east-1a
       type: private
       zone: us-east-1a
     - cidr: 172.20.64.0/19
-      name: pri-sub-02
+      name: us-east-1b
       type: Private
       zone: us-east-1b
   topology:
