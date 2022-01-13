@@ -11,7 +11,7 @@ output "vpc_name" {
 }
 
 output "vpc_cidr_block" {
-  value = "${module.vpc_cidr_block}"
+  value = "${var.vpc_cidr_block}"
 }
 
 // Public Subnets
@@ -27,7 +27,7 @@ output "public_route_table_ids" {
 // Private Subnets
 
 output "private_subnet_ids" {
-  value = ["${module.vpc.private_subnets}"]
+  value = [var.vpc.private_subnets]
 }
 
 output "private_route_table_ids" {
@@ -43,7 +43,7 @@ output "nat_gateway_ids" {
 }
 
 output "availability_zones" {
-  value = ["${local.azs}"]
+  value = [var.avail_zone]
 }
 
 output "common_http_sg_id" {
