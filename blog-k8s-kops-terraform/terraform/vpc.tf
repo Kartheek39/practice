@@ -1,5 +1,5 @@
 module "dev_vpc" {
-  source             = "vpc.tf"
+  source             = "vpc"
   version            = "1.46.0"
   name               = "${local.vpc_name}"
   cidr               = "172.31.0.0/16"
