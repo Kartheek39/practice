@@ -1,28 +1,18 @@
-provider "aws" {
-  region = "us-east-1"
-}
+module "dev_vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
-terraform {
-  backend "s3" {
-    bucket = "cluster-kops"
-    key    = "dev/terraform"
-    region = "us-east-1"
-  }
-}
+  name = "my-vpc"
+  cidr = var.vpc_cidr_block
 
-locals {
-  azs                    = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  environment            = "test"
-  kops_state_bucket_name = "cluster-kops"
-  // Needs to be a FQDN
-  kubernetes_cluster_name = "sample.jainankur229.xyz"
-  ingress_ips             = ["10.0.0.100/32", "10.0.0.101/32"]
-  vpc_name                = "${local.environment}-vpc"
+  azs             = [var.avail_zone]
+  private_subnets = [var.private_cidr_block]
+  public_subnets  = [var.public_cidr_block]
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
 
   tags = {
-    environment = "${local.environment}"
-    terraform   = true
+    Terraform = "true"
+    Environment = "dev"
   }
 }
-
-data "aws_region" "current" {}
