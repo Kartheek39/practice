@@ -4,7 +4,7 @@ variable "vpc" {
     public_subnets = list(string)
     private_subnets = list(string)
     rds_subnets     = list(string)
-#    elasticache_subnets = list(string)
+    elasticache_subnets = list(string)
     dns_hostnames = bool
     dns_support   = bool
     tenancy       = string
@@ -16,7 +16,7 @@ variable "vpc" {
     public_subnets  = ["10.1.0.0/24","10.1.1.0/24","10.1.2.0/24"]
     private_subnets = ["10.1.3.0/24","10.1.4.0/24","10.1.5.0/24"]
     rds_subnets     = []
-#    elasticache_subnets = []
+    elasticache_subnets = []
     dns_hostnames   = true
     dns_support     = true
     tenancy         = "default"

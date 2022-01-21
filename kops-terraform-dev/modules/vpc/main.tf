@@ -151,14 +151,14 @@ resource "aws_route" "nat_gateway_to_private_route_table" {
 }
 
 
-#resource "aws_route_table" "rds_route_table" {
-#  count = "${length(var.vpc.rds_subnets) > 0 ? 1 : 0}"
-#  vpc_id = "${aws_vpc.vpc.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_rds_route"
-#  }
-#}
-#
+resource "aws_route_table" "rds_route_table" {
+  count = "${length(var.vpc.rds_subnets) > 0 ? 1 : 0}"
+  vpc_id = "${aws_vpc.vpc.id}"
+  tags = {
+    Name = "${var.environment}_${var.cluster_name}_rds_route"
+  }
+}
+
 resource "aws_route" "nat_gateway_to_rds_route_table" {
   count = "${length(var.vpc.rds_subnets) > 0 ? 1 : 0}"
   route_table_id         = "${aws_route_table.rds_route_table.0.id}"
@@ -167,22 +167,22 @@ resource "aws_route" "nat_gateway_to_rds_route_table" {
 }
 
 
-#resource "aws_route_table" "elasticache_route_table" {
-#  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
-#  vpc_id = "${aws_vpc.vpc.id}"
-#  tags = {
-#    Name = "${var.environment}_${var.cluster_name}_rds_route"
-#  }
-#}
-#
-#resource "aws_route" "nat_gateway_to_elasticache_route_table" {
-#  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
-#  route_table_id         = "${aws_route_table.elasticache_route_table.0.id}"
-#  destination_cidr_block = "0.0.0.0/0"
-#  nat_gateway_id         = "${aws_nat_gateway.nat_gw.0.id}"
-#}
-#
-#
+resource "aws_route_table" "elasticache_route_table" {
+  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
+  vpc_id = "${aws_vpc.vpc.id}"
+  tags = {
+    Name = "${var.environment}_${var.cluster_name}_rds_route"
+  }
+}
+
+resource "aws_route" "nat_gateway_to_elasticache_route_table" {
+  count = "${length(var.vpc.elasticache_subnets) > 0 ? 1 : 0}"
+  route_table_id         = "${aws_route_table.elasticache_route_table.0.id}"
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = "${aws_nat_gateway.nat_gw.0.id}"
+}
+
+
 resource "aws_route_table_association" "public_subnet" {
   count          = "${length(var.vpc.public_subnets)}"
   subnet_id      = "${element(aws_subnet.public_subnets.*.id, count.index)}"
@@ -196,17 +196,17 @@ resource "aws_route_table_association" "private_subnet" {
   route_table_id = "${aws_route_table.private_route_table.0.id}"
 }
 
-#resource "aws_route_table_association" "rds_subnet" {
-#  count          = "${length(var.vpc.rds_subnets)}"
-#  subnet_id      = "${element(aws_subnet.private_rds_subnets.*.id, count.index)}"
-#  route_table_id = "${aws_route_table.rds_route_table.0.id}"
-#}
-#
-#resource "aws_route_table_association" "elasticache_subnet" {
-#  count          = "${length(var.vpc.elasticache_subnets)}"
-#  subnet_id      = "${element(aws_subnet.private_elasticache_subnets.*.id, count.index)}"
-#  route_table_id = "${aws_route_table.elasticache_route_table.0.id}"
-#}
+resource "aws_route_table_association" "rds_subnet" {
+  count          = "${length(var.vpc.rds_subnets)}"
+  subnet_id      = "${element(aws_subnet.private_rds_subnets.*.id, count.index)}"
+  route_table_id = "${aws_route_table.rds_route_table.0.id}"
+}
+
+resource "aws_route_table_association" "elasticache_subnet" {
+  count          = "${length(var.vpc.elasticache_subnets)}"
+  subnet_id      = "${element(aws_subnet.private_elasticache_subnets.*.id, count.index)}"
+  route_table_id = "${aws_route_table.elasticache_route_table.0.id}"
+}
 
 ##
 ## VPC Peering connection in same region
