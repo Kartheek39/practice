@@ -54,7 +54,7 @@ spec:
     enableEtcdTLS: true
     enableTLSAuth: true
     etcdMembers:
-    {{range $i, $subnet := .publicSubnets}}
+    {{range $i, $subnet := .privateSubnets}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
       name: master-{{$subnet.zone}}
@@ -70,7 +70,7 @@ spec:
     enableEtcdTLS: true
     enableTLSAuth: true
     etcdMembers:
-    {{range $i, $subnet := .publicSubnets}}
+    {{range $i, $subnet := .privateSubnets}}
     - instanceGroup: master-{{$subnet.zone}}
       encryptedVolume: true
       name: master-{{$subnet.zone}}
@@ -233,5 +233,5 @@ spec:
   topology:
     dns:
       type: Public
-    masters: Public
-    nodes: Public
+    masters: Private
+    nodes: Private
