@@ -183,13 +183,13 @@ resource "aws_route" "nat_gateway_to_rds_route_table" {
 #}
 #
 #
-#resource "aws_route_table_association" "public_subnet" {
-#  count          = "${length(var.vpc.public_subnets)}"
-#  subnet_id      = "${element(aws_subnet.public_subnets.*.id, count.index)}"
-#  route_table_id = "${aws_route_table.public_route_table.0.id}"
-#}
-#
-#
+resource "aws_route_table_association" "public_subnet" {
+  count          = "${length(var.vpc.public_subnets)}"
+  subnet_id      = "${element(aws_subnet.public_subnets.*.id, count.index)}"
+  route_table_id = "${aws_route_table.public_route_table.0.id}"
+}
+
+
 resource "aws_route_table_association" "private_subnet" {
   count          = "${length(var.vpc.private_subnets)}"
   subnet_id      = "${element(aws_subnet.private_subnets.*.id, count.index)}"
