@@ -3,7 +3,7 @@
 {{range $i, $node := .nodes}}
 {{if $i}}
 ---
-{{end}}
+  {{end}}
 apiVersion: kops/v1alpha2
 kind: InstanceGroup
 metadata:
@@ -26,11 +26,11 @@ spec:
     kops.k8s.io/instancegroup: {{$node.name}}
   role: Node
   suspendProcesses:
-  - AZRebalance
+    - AZRebalance
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
   {{range $j, $subnet := $x.privateSubnets}}
   - {{$subnet.name}}
   {{end}}
-{{end}}
+  {{end}}

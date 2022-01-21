@@ -1,9 +1,8 @@
 {{$x := .}}
 {{range $i, $subnet := .privateSubnets}}
 {{if $i}}
-#{{$subnet.id}}
 ---
-{{end}}
+  {{end}}
 apiVersion: kops/v1alpha2
 kind: InstanceGroup
 metadata:
@@ -25,9 +24,9 @@ spec:
     kops.k8s.io/instancegroup: master-{{$subnet.zone}}
   role: Master
   suspendProcesses:
-  - AZRebalance
+    - AZRebalance
   rootVolumeSize: 50
   rootVolumeOptimization: true
   subnets:
-  - {{$subnet.name}}
-{{end}}
+    - {{$subnet.name}}
+  {{end}}
